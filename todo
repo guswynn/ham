@@ -1,0 +1,30 @@
+# need to figure out how to split
+
+n + n-1 + n-2 ..... + 1 into 4ths....
+for an equal split:
+
+  for large n, the greatest difference is 3n/4,
+    so total difference is (3n/4)*n/4 = (3n^2)/16
+    for n = 500000, this is 250 billion, not good
+    
+
+instead, split like this:
+
+
+
+n   -> thread 1
+n-1 -> thread 2 
+n-2 -> thread 3
+n-3 -> thread 4
+
+
+n-4 -> thread 1
+n-5 -> thread 2
+n-6 -> thread 3
+n-7 -> thread 4
+
+and so on
+
+
+so the max difference is ~500,000*4=2million ( i think), which is small compared the max number of
+comparisons, around 124billion
