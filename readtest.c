@@ -50,7 +50,6 @@ int main(int argc, char **argv){
   char line[50]; //will only be commits, 40 hex characters
   char line2[50]; //will only be commits, 40 hex characters
   hashes = fopen("hashes.txt", "r");
-  hashes2 = fopen("hashes2.txt", "r");
   int sum = 0;
   int count = 0;
   int min = 161;
@@ -59,6 +58,7 @@ int main(int argc, char **argv){
   char *a1 = malloc(50);
   char *a2 = malloc(50);
   while (fgets(line, 100, hashes) != NULL){
+    hashes2 = fopen("hashes2.txt", "r");
     while (fgets(line2, 100, hashes2)!= NULL){
       //printf("%s\n", line);
       //printf("%s\n", line2);
@@ -74,9 +74,10 @@ int main(int argc, char **argv){
         memcpy(min2, a2, 50);
       }
     }
+    fclose(hashes2);
   }
   printf("MIN:%d\n", min);
-  printf("ONE:%s, TWO:%s\n", min1, min2);
+  printf("ONE:%sTWO:%s", min1, min2);
   printf("AVG:%f\n", (float) sum / (float) count);
 }
 
