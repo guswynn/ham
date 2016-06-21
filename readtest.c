@@ -57,17 +57,17 @@ int main(int argc, char **argv){
   char min2[50];
   char *a1 = malloc(50);
   char *a2 = malloc(50);
-  while (fgets(line, 100, hashes) != NULL){
+  while (fgets(line, 50, hashes) != NULL){
     hashes2 = fopen("hashes2.txt", "r");
-    while (fgets(line2, 100, hashes2)!= NULL){
+    while (fgets(line2, 50, hashes2)!= NULL){
       //printf("%s\n", line);
       //printf("%s\n", line2);
       memcpy(a1, line, 50);
       memcpy(a2, line2, 50);
       int val = calc_diff(a1, a2);
-      printf("val:%d\n", val);
       sum += val;
       count = val == 0 ? count : count + 1;
+      printf("val:%d num:%d\n", val, count);
       if (val < min && val != 0){
         min = val;
         memcpy(min1, a1, 50);
