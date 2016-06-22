@@ -84,8 +84,8 @@ void *DoWork(void *args){
   saved[0] = 161;
   int count = 0;
   int i,j;
-  for (i = 0; i < len; i+=(20*offset)) {
-      for (j = i; j < len; j+=20) {
+  for (i = (20*offset); i < len; i+=(20*offset)) {
+      for (j = i+20; j < len; j+=20) {
         int k;
         int h = 0;
         count++;
