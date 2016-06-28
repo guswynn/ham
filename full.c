@@ -13,7 +13,7 @@
 unsigned char ham(unsigned char c1, unsigned char c2){
   unsigned char dist = 0;
   unsigned char diff = c1 ^ c2;
-  //count the ones
+  /* count the ones */
   for (dist = 0; diff; dist++){
     diff &= (diff-1);
   }
@@ -65,7 +65,7 @@ int main(int argc, char **argv){
 
 void *DoWork(void *args){
   printf("ID: %lu, CPU: %d\n", pthread_self(), sched_getcpu()); 
-  // vals, [min, index1, index2]
+  /* vals, [min, index1, index2] */
   int *saved = (int *) args;
   int offset = saved[0];
   printf("offset:%d\n\n", offset);
@@ -112,7 +112,7 @@ void *DoWork(void *args){
   return 0;
 }
   
-// I know there are 4 threads i'm going to make, so twelve values:
+/* I know there are 4 threads i'm going to make, so twelve values: */
 int vals[12];
   
 
@@ -129,15 +129,15 @@ int main(int argc, char **argv){
   pthread_attr_t attr;
   cpu_set_t cpus;
   pthread_attr_init(&attr);
-   
-  for (int i = 0; i < num_cpu; i++) {
+  int i; 
+  for (i = 0; i < num_cpu; i++) {
     CPU_ZERO(&cpus);
     CPU_SET(i, &cpus);
     pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &cpus);
     pthread_create(&threads[i], &attr, DoWork, (void *) (vals+(i*3)));
   }
 
-  for (int i = 0; i < num_cpu; i++) {
+  for (i = 0; i < num_cpu; i++) {
     pthread_join(threads[i], NULL);
   }
 
